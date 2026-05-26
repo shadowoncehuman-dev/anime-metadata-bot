@@ -1,0 +1,4 @@
+python-telegram-bot==21.5
+supabase==2.10.0
+requests==2.32.3
+flask==3.1.0
