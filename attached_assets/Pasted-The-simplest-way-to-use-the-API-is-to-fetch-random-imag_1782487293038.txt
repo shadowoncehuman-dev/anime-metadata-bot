@@ -1,0 +1,126 @@
+The simplest way to use the API is to fetch random images. No authentication is required for basic usage.
+
+Fetch a Random Image
+curl https://api.waifu.im/images
+
+This returns a JSON response with paginated image data:
+
+{
+  "items": [
+    {
+      "id": 6758,
+      "perceptualHash": "0000000000000000",
+      "extension": ".png",
+      "dominantColor": "#eee6eb",
+      "source": "https://www.pixiv.net/en/artworks/81300646",
+      "artists": [
+        {
+          "id": 838,
+          "name": "ネコサン＠お仕事募集中",
+          "patreon": null,
+          "pixiv": "https://www.pixiv.net/users/544561",
+          "twitter": "https://twitter.com/neko__san",
+          "deviantArt": null,
+          "reviewStatus": "Accepted",
+          "creatorId": null,
+          "imageCount": 0
+        }
+      ],
+      "uploaderId": null,
+      "uploadedAt": "2021-11-02T11:16:19.048684Z",
+      "isNsfw": false,
+      "isAnimated": false,
+      "width": 1600,
+      "height": 2088,
+      "byteSize": 1778623,
+      "url": "https://cdn.waifu.im/6758.png",
+      "tags": [
+        {
+          "id": 7,
+          "name": "Oppai",
+          "slug": "oppai",
+          "description": "Large-breasted women",
+          "reviewStatus": "Accepted",
+          "creatorId": null,
+          "imageCount": 0
+        }
+      ],
+      "reviewStatus": "Accepted",
+      "favorites": 20,
+      "likedAt": null,
+      "addedToAlbumAt": null,
+      "albums": []
+    }
+  ],
+  "pageNumber": 1,
+  "totalPages": 1,
+  "totalCount": 1,
+  "hasPreviousPage": false,
+  "hasNextPage": false,
+  "maxPageSize": -1,
+  "defaultPageSize": 1
+}
+
+Filter by Tags
+Include images matching specific tags using IncludedTags (AND logic -- all tags must match):
+
+curl "https://api.waifu.im/images?IncludedTags=waifu"
+
+Exclude images with certain tags using ExcludedTags (OR logic -- any match is excluded):
+
+curl "https://api.waifu.im/images?ExcludedTags=maid"
+
+Pagination
+Control pagination with Page and PageSize:
+
+curl "https://api.waifu.im/images?PageSize=10&Page=1"
+
+NSFW Content
+By default, only SFW images are returned (IsNsfw=False). The parameter accepts three values: False, True, and All.
+
+# NSFW images only
+curl "https://api.waifu.im/images?IsNsfw=True"
+
+# Both SFW and NSFW images
+curl "https://api.waifu.im/images?IsNsfw=All"
+
+See the Tags page for more details on how tags and NSFW filtering interact.
+
+Filter by Artist
+You can filter images by artist ID using IncludedArtists:
+
+curl "https://api.waifu.im/images?IncludedArtists=1"
+
+Consult the API Reference for the full list of available filters (orientation, resolution, file size, animation, and more).
+
+Available Tags
+To see all available tags:
+
+curl https://api.waifu.im/tags
+
+The me and favorites Aliases
+When authenticated, you can use me as a user ID alias to refer to yourself, and favorites as an album ID alias to refer to your default favorites album. These aliases simplify common operations:
+
+# Get your own profile
+curl -H "X-Api-Key: YOUR_API_KEY" https://api.waifu.im/users/me
+
+# List your favorites
+curl -H "X-Api-Key: YOUR_API_KEY" https://api.waifu.im/users/me/albums/favorites
+
+# Add an image to your favorites
+curl -X POST -H "X-Api-Key: YOUR_API_KEY" \
+  "https://api.waifu.im/users/me/albums/favorites/images/8008"
+
+# Remove an image from your favorites
+curl -X DELETE -H "X-Api-Key: YOUR_API_KEY" \
+  "https://api.waifu.im/users/me/albums/favorites/images/8008"
+
+Code Examples
+cURL
+JavaScript
+Python
+C#
+curl "https://api.waifu.im/images?IncludedTags=waifu"
+
+Previous
+Introduction

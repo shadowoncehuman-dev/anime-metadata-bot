@@ -1,0 +1,107 @@
+API Reference
+Rate Limits
+Every response includes the following headers to help you track and respect rate limits:
+
+Header	Description
+x-rate-limit-limit	Duration of the current rate limit window (e.g. 1m)
+x-rate-limit-remaining	Remaining requests in the current window
+x-rate-limit-reset	ISO 8601 timestamp of when the current window resets
+Limits
+Endpoint	Limit
+/search	7 requests per 5 seconds
+/:category	200 requests per minute (per category)
+User-Agent
+All requests must include a User-Agent header. Please use the following format: APP_NAME (CONTACT_INFO).
+For example: NekoApp (https://example.com) or NekoApp (dev@example.com)
+
+Naming Guidelines:
+
+Be specific: Do not use generic names like "Discord Bot", "WhatsApp Bot", or "Telegram Bot". Your application must have a unique name.
+Avoid placeholders: Do not use strings like test, bot, or the example value above.
+No library defaults: Avoid using default library strings such as python-requests, okhttp, axios, node, or Go-http-client.
+Contact Information Options:
+The contact info does not have to be a traditional website. Any of the following are acceptable ways to provide identification:
+
+A direct contact email address.
+A project website or public repository URL (e.g., GitHub, GitLab).
+A bot invite link or discovery page.
+A listing URL (e.g., top.gg or similar directories).
+Spoofing and Impersonation:
+
+Do not spoof browser strings. The Mozilla/5.0 ... format is strictly reserved for real web browsers and Cloudflare-verified bots.
+Do not impersonate known crawlers like Googlebot or Bingbot.
+Failure to follow these guidelines and using generic, default, or spoofed values will likely result in your requests being blocked.
+
+Categories
+Categories define the type of content returned by the API. Each category maps to a fixed file format.
+
+Images
+husbando
+kitsune
+neko
+waifu
+GIFs
+angry
+baka
+bite
+bleh
+blowkiss
+blush
+bonk
+bored
+carry
+clap
+confused
+cry
+cuddle
+dance
+facepalm
+feed
+handhold
+handshake
+happy
+highfive
+hug
+kabedon
+kick
+kiss
+lappillow
+laugh
+lurk
+nod
+nom
+nope
+nya
+pat
+peck
+poke
+pout
+punch
+run
+salute
+shake
+shoot
+shocked
+shrug
+sip
+slap
+sleep
+smile
+smug
+spin
+stare
+tableflip
+teehee
+think
+thumbsup
+tickle
+wag
+wave
+wink
+yawn
+yeet
+Response Fields
+Type	Fields
+Images	artist_name, artist_href, source_url
+GIFs	anime_name
+url and dimensions are included in both.
